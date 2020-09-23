@@ -1,0 +1,11 @@
+#!/bin/bash
+# Connect to VCC's vpn
+function vpn {
+    pin=1376
+    user_name=lviana
+    read -p "Pointsharp one time password: " token
+    read -s -p "CDSID password: " cdsid_pw
+    mypw=$pin$token$cdsid_pw
+    f5fpc --start -u $user_name -p $mypw -t https://iconnect.global.volvocars.biz/ps
+    # sudo openconnect -b iconnect.volvocars.biz/ps -u $uname # -p $pin$token
+}
