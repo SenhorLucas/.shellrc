@@ -47,7 +47,7 @@ alias l='ls -CF'
 # CTags
 # Use Universal CTags instead of GNU CTags.
 # snap install universal-ctags
-alias ctags=/snap/universal-ctags/current/universal-ctags-wrapper
+# alias ctags=/snap/universal-ctags/current/universal-ctags-wrapper
 
 # Add alert at the end of long running commands:
 # cmake; alert
@@ -80,3 +80,27 @@ function install_fzf() {
 # ========
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTIONS='-m --height 50% --border'
+
+
+# Install ruby gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
+function cleanup_hpt() {
+    pip3 uninstall --yes hpt csp_artifact_lib csp_emulator cilib
+    rm -rf ~/.config/CSP
+    rm -rf ~/.local/bin/hpt
+}
+
+eval "$(register-python-argcomplete dizzy)"
+
+# DBus templates
+function dbus_list_names() {
+    dbus-send --session --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.ListNames
+}
+
+function dbus_get_pid() {
+    local $socket_name=$1
+    dbus-send --session --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.GetConnectionUnixProcessID "string:$socket_name"
+}
+    
