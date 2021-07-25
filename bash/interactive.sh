@@ -11,8 +11,7 @@ esac
 # Pre-load files
 # --------------
 
-# Load commonrc file
-source ~/.shellrc/commonrc.sh
+source $HOME/lv_shell/common/interactive.sh
 
 
 # Shell options
@@ -20,9 +19,6 @@ source ~/.shellrc/commonrc.sh
 
 # Set the editing mode to vi. Default is Emacs, but I've been using Vim lately.
 set -o vi
-
-# Link `~/.bashrc` to `~/.shellrc/bashrc.sh`.
-alias linkrc="ln -lf ~/.shellrc/bashrc.sh ~/.bashrc"
 
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -37,6 +33,7 @@ shopt -s globstar
 # Check the window size after each command and, if necessary, update the values
 # of LINES and COLUMNS.
 shopt -s checkwinsize
+
 
 # Aliases
 # -------
@@ -167,10 +164,9 @@ fi
 
 # VPN: usually includes sensitive data that should not be committed to a
 # repository.
-include  ~/.shellrc/vpn
 
 # Fuzzy Finder: A wonderful tool for performing fuzzy search on streams.
-include ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # Less: make it more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
