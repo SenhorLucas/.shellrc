@@ -7,11 +7,12 @@ case $- in              # $- is the current shell options. e.g. himBHs
       *) return;;
 esac
 
+LV_SHELL=${LV_SHELL:-$HOME/lv_shell}
 
 # Pre-load files
 # --------------
 
-source $HOME/lv_shell/common/interactive.sh
+source ${LV_SHELL}/common/interactive.sh
 
 
 # Shell options

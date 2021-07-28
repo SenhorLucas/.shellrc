@@ -1,28 +1,42 @@
-# Load commonrc file
-source ~/lv_shell/common/interactive.sh
+# In your `.zshrc` file, set the environment variable LV_SHELL, e.g.:
+# `export LV_SHELL=$HOME/lv_shell`
+
+# LV Shell startup
+# ----------------
+LV_SHELL=${LV_SHELL:-$HOME/lv_shell}
+source "$LV_SHELL/common/interactive.sh"
+
+
+# Configure Oh My Zsh
+# -------------------
+# Oh My Zsh intallation directory
+export ZSH="$HOME/.oh-my-zsh"
+
+# Default promt, if no plugin is activated.
+PROMPT='%(?.%F{200}√.%F{red}?%?)%f %B%F{211}%~%f%b %# '
+
+# Install Oh My Zsh if
+[[ -d "$ZSH" ]] || \
+	git clone --depth=1 --branch master https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
+
+ZSH_THEME="avit"
+plugins=(git docker docker-compose)
+source $ZSH/oh-my-zsh.sh
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-bindkey -v
-PROMPT='%(?.%F{200}√.%F{red}?%?)%f %B%F{211}%~%f%b %# '
-# End of lines configured by zsh-newuser-install
 
-
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/lviana/.oh-my-zsh"
-
-ZSH_THEME="avit"
-
-plugins=(git docker docker-compose)
-
-source $ZSH/oh-my-zsh.sh
-
-HISTFILE=~/.histfile
+# Vim cursor movements
 bindkey -v
 
 
+# FZF
+# ---
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Unused Oh My Zsh configuration
+# ------------------------------
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -109,5 +123,3 @@ bindkey -v
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Lines configured by zsh-newuser-install

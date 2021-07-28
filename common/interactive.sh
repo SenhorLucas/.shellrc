@@ -1,37 +1,16 @@
 #!/bin/bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-LV_SHELL_DIR=
-
-# VCC specific shortcuts not commited to github
-[[ -f vcc.sh ]] && source vcc.sh
-
+LV_SHELL=${LV_SHELL:-$HOME/lv_shell}
 
 
 # Linking files together
 # ----------------------
 
-[[ -f $HOME/lv_shell/common/env/secrets.sh ]] && source $HOME/lv_shell/common/secrets.sh
-source $HOME/lv_shell/common/env.sh
-
-function link_files() {
-	# Vim
-	if [[ ! -f "$HOME"/.vimrc ]]; then
-		cat <<-EOF "$HOME"/.vimrc
-			source "$HOME"/lv_shell/vim/vimrc
-		EOF
-	fi
+[[ -f "$LV_SHELL/common/env/secrets.sh" ]] && source "$LV_SHELL/common/secrets.sh"
+source "$LV_SHELL/common/env.sh"
 
 
-	# Tmux
-	if [[ ! -f "$HOME"/.tmux.conf ]]; then
-		cat <<-EOF "$HOME"/.tmux.conf
-			source-file "$HOME"/lv_shell/tmux/tmux.conf
-		EOF
-	fi
-}
-
-# Start tmux as by default
+# Start tmux as by default. Disabled for now, it's not too hard to type `tmux`.
 # if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 #   tmux attach -t default || tmux new -s default
 # fi
@@ -49,12 +28,12 @@ if [ -x /usr/bin/dircolors ]; then
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+
 fi
 
 # ls
-alias la='ls -a'
-alias ll='ls -alF'
+alias la='ls -A'
+alias ll='ls -AlF'
 alias l='ls -CF'
 
 # CTags
@@ -64,7 +43,7 @@ alias l='ls -CF'
 
 # Add alert at the end of long running commands:
 # cmake; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=medium -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
 # Custom functions
@@ -104,3 +83,7 @@ function dbus_get_pid() {
     local $socket_name=$1
     dbus-send --session --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.GetConnectionUnixProcessID "string:$socket_name"
 }
+
+
+# VCC specific shortcuts not commited to github
+[[ -f vcc.sh ]] && source vcc.sh
