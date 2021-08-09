@@ -118,8 +118,8 @@ autocmd BufNewFile,BufRead *.js, *.html, *.css
 " Python:
 " -------
 autocmd BufNewFile,BufRead *.py
-    \ set foldmethod=indent
-    \ set foldlevel=99
+    \ set foldmethod=indent |
+    \ set foldlevel=99 |
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -132,7 +132,7 @@ autocmd BufNewFile,BufRead *.py
 " Bash:
 " -----
 autocmd BufNewFile,BufRead *.sh
-    \ set noexpandtab
+    \ set noexpandtab |
     \ set syntax=bash
 
 

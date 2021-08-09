@@ -5,6 +5,7 @@
 # ----------------
 LV_SHELL=${LV_SHELL:-$HOME/lv_shell}
 source "$LV_SHELL/common/interactive.sh"
+source "$LV_SHELL/common/vcc.sh"
 
 
 # Configure Oh My Zsh
