@@ -6,7 +6,7 @@ LV_SHELL=${LV_SHELL:-$HOME/lv_shell}
 # Linking files together
 # ----------------------
 
-[[ -f "$LV_SHELL/common/env/secrets.sh" ]] && source "$LV_SHELL/common/secrets.sh"
+[[ -f "$LV_SHELL/common/secrets.sh" ]] && source "$LV_SHELL/common/secrets.sh"
 source "$LV_SHELL/common/env.sh"
 
 
